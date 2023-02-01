@@ -99,7 +99,7 @@ public class NotificationManagerPlugin extends CordovaPlugin {
             
             channel.setDescription(channelDescription);
             
-            Uri soundUri=Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE+"://"+activity.getApplicationContext().getPackageName()+"/raw/atama");
+            Uri soundUri=Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE+"://"+activity.getApplicationContext().getPackageName()+"/raw/"+channelSound);
             //Uri soundUri=Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE+"://"+activity.getApplicationContext().getPackageName()+"/"+channelSound);
             //AudioAttributes audioAttributes=new AudioAttributes.Builder().setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION).setUsage(AudioAttributes.USAGE_NOTIFICATION).build();
             //channel.setSound(soundUri,audioAttributes);
