@@ -60,13 +60,6 @@ NotificationManager.setNotificationChannel=function(channelId,channelName,channe
     });
 };
 
-NotificationManager.deleteNotificationChannel=function(channelId) {
-    return new Promise(function(onSuccess,onFail){
-        NotificationManager._deleteNotificationChannel(channelId,onSuccess,onFail);
-    });
-};
-
-
 NotificationManager.getNotificationChannel=function(channelId) {
     return new Promise(function(onSuccess,onFail){
         NotificationManager._getNotificationChannel(channelId,onSuccess,onFail);
