@@ -117,7 +117,22 @@ public class NotificationManagerPlugin extends CordovaPlugin {
 
         return channelJSON;
     }
+    
+    
+    @TargetApi(26)
+    private JSONObject deleteNotificationChannel(String channelId){
+        // only call on Android O and above
+        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.O){
+            final Activity activity=this.cordova.getActivity();
+            final NotificationManager manager=(NotificationManager) activity.getSystemService(Context.NOTIFICATION_SERVICE);
+            
+            NotificationManager notificationManager=(NotificationManager) activity.getSystemService(Context.NOTIFICATION_SERVICE);
+            notificationManager.deleteNotificationChannel(channelId);
+        }
 
+        return channelJSON;
+    }    
+    
 
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
@@ -125,6 +140,11 @@ public class NotificationManagerPlugin extends CordovaPlugin {
 
             if ("setNotificationChannel".equals(action)) {
                 callbackContext.success(setNotificationChannel(args.getString(0),args.getString(1),args.getString(2),args.getString(3),args.getString(4)));
+                return true;
+            }
+
+            if ("deleteNotificationChannel".equals(action)) {
+                callbackContext.success(deleteNotificationChannel(args.getString(0)));
                 return true;
             }
 
