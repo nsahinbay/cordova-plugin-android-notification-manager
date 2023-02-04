@@ -60,6 +60,12 @@ NotificationManager.setNotificationChannel=function(channelId,channelName,channe
     });
 };
 
+NotificationManager.deleteNotificationChannel=function(channelId) {
+    return new Promise(function(onSuccess,onFail){
+        NotificationManager._deleteNotificationChannel(channelId,onSuccess,onFail);
+    });
+};
+
 
 NotificationManager.getNotificationChannel=function(channelId) {
     return new Promise(function(onSuccess,onFail){
@@ -86,6 +92,9 @@ NotificationManager._setNotificationChannel=function(channelId,channelName,chann
     },onFail,NotificationManager.SERVICE_NAME,'setNotificationChannel',[channelId,channelName,channelDescription,channelSound,channelVibrate]);
 };
 
+NotificationManager._deleteNotificationChannel = function(channelId, onSuccess, onFail) {
+    cordova.exec(onSuccess, onFail, NotificationManager.SERVICE_NAME, 'deleteNotificationChannel', [channelId]);
+};
 
 NotificationManager._getNotificationChannel = function(channelId, onSuccess, onFail) {
     cordova.exec(function(channelJSON){
